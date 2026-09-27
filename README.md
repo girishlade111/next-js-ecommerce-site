@@ -1,30 +1,90 @@
-# Next js ecommerce site
+# Next.js Ecommerce Site
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+A complete, modern ecommerce storefront built with Next.js 15, React 19, and shadcn/ui. Browse products, filter by category, view product details, manage a cart, and walk through a full checkout flow with an order-success confirmation — all client-side, no backend required.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/gileb64375-5584s-projects/v0-next-js-ecommerce-site)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/OuSd5ixqJ03)
+## Features
 
-## Overview
+- **Homepage** — hero section, featured products, category highlights
+- **Product catalog** (`/products`) — grid layout with search and category filtering
+- **Product detail pages** (`/products/[id]`) — image, description, price, quantity, ratings
+- **Shopping cart** (`/cart`) — add/remove items, quantity controls, live totals
+- **Checkout flow** (`/checkout`) — shipping + payment form with validation, order success page
+- **Dark/light mode** — theme toggle via `next-themes`
+- **Responsive design** — mobile-first layout with Tailwind CSS
+- **Toast notifications** — cart feedback via shadcn/ui toasts
+- **Product carousels** — embla-powered image sliders
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router, static export)
+- **UI:** React 19, TypeScript
+- **Styling:** Tailwind CSS, shadcn/ui components (Radix UI primitives)
+- **Icons:** lucide-react
+- **Carousel:** embla-carousel-react
+- **Analytics:** @vercel/analytics
+
+## Quick Start
+
+```bash
+# install dependencies
+npm install
+
+# run the dev server
+npm run dev
+# open http://localhost:3000
+
+# production build (static export to ./out)
+npm run build
+
+# serve the static build
+npx serve out
+```
+
+## Project Structure
+
+```
+app/                  # App Router pages
+  page.tsx            # homepage
+  products/           # catalog + product detail pages
+  cart/page.tsx       # cart page
+  checkout/           # checkout + success pages
+  layout.tsx          # root layout + theme provider
+components/
+  ui/                 # shadcn/ui components (button, dialog, input, ...)
+  header.tsx          # site header with nav + cart badge
+  footer.tsx          # site footer
+  product-card.tsx    # product card used in grids
+lib/
+  data.ts             # product data + helpers
+  cart-context.tsx    # cart state (React context)
+  types.ts            # TypeScript types
+  utils.ts            # shadcn cn() utility
+hooks/
+  use-toast.ts        # toast hook
+public/               # static assets
+styles/globals.css    # global styles
+```
+
+## Environment Variables
+
+None required — the storefront runs entirely client-side with local mock data in `lib/data.ts`.
 
 ## Deployment
 
-Your project is live at:
+The site builds to a fully static export (`output: 'export'`, files in `./out`), so it can be hosted on any static host: GitHub Pages, Cloudflare Pages, Netlify, or any static file server.
 
-**[https://vercel.com/gileb64375-5584s-projects/v0-next-js-ecommerce-site](https://vercel.com/gileb64375-5584s-projects/v0-next-js-ecommerce-site)**
+> **Note:** `next.config.mjs` sets `basePath: '/next-js-ecommerce-site'` for deployment under a GitHub Pages project subpath. Remove `basePath` when deploying to a root domain or Vercel.
 
-## Build your app
+```bash
+npm run build   # emits ./out
+```
 
-Continue building your app on:
+## Roadmap Ideas
 
-**[https://v0.app/chat/projects/OuSd5ixqJ03](https://v0.app/chat/projects/OuSd5ixqJ03)**
+- Real product API / database backend
+- Payment gateway integration (Razorpay / Stripe)
+- Order history + user accounts
 
-## How It Works
+---
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Built by Girish Lade — [ladestack.in](https://ladestack.in)

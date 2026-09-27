@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  basePath: '/next-js-ecommerce-site',
   eslint: {
     ignoreDuringBuilds: true,
   },
